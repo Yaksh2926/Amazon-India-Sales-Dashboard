@@ -1,0 +1,25 @@
+Amazon India Dashboard — DAX measures
+Table name assumed: Amazon Sales
+
+Total Sales = SUM('Amazon Sales'[Total_Sales_INR])
+Total Profit = SUM('Amazon Sales'[Profit_INR])
+Total Orders = DISTINCTCOUNT('Amazon Sales'[Order_ID])
+Total Units Sold = SUM('Amazon Sales'[Quantity])
+Average Order Value = DIVIDE([Total Sales], [Total Orders], 0)
+Profit Margin % = DIVIDE([Total Profit], [Total Sales], 0)
+
+Delivered Orders = CALCULATE([Total Orders], 'Amazon Sales'[Order_Status] = "Delivered")
+Shipped Orders = CALCULATE([Total Orders], 'Amazon Sales'[Order_Status] = "Shipped")
+Returned Orders = CALCULATE([Total Orders], 'Amazon Sales'[Order_Status] = "Returned")
+Cancelled Orders = CALCULATE([Total Orders], 'Amazon Sales'[Order_Status] = "Cancelled")
+Return Rate % = DIVIDE([Returned Orders], [Total Orders], 0)
+Cancellation Rate % = DIVIDE([Cancelled Orders], [Total Orders], 0)
+
+Calendar = ADDCOLUMNS(CALENDAR(MIN('Amazon Sales'[Order_Date]), MAX('Amazon Sales'[Order_Date])),
+    "Year", YEAR([Date]),
+    "Month", FORMAT([Date], "MMM"),
+    "Month Number", MONTH([Date]),
+    "Year-Month", FORMAT([Date], "MMM yyyy"),
+    "Year-Month Sort", YEAR([Date]) * 100 + MONTH([Date]))
+
+Note: after creating Calendar, relate Calendar[Date] (one side) to Amazon Sales[Order_Date] (many side), then sort Calendar[Year-Month] by Calendar[Year-Month Sort].
