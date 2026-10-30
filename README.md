@@ -1,8 +1,13 @@
 # Amazon India Sales & Business Performance Dashboard
 
+## 🚀 Live Interactive Dashboard
+
+**[Open the Amazon India Business Dashboard](https://yaksh2926.github.io/Amazon-India-Sales-Dashboard/)**
+
+The dashboard is hosted with GitHub Pages. Anyone with the link can view it directly in a web browser without downloading the HTML file.
+
 ## Project Overview
-An interactive dashboard designed to analyze Amazon India sales
-and business performance through clear visualizations and KPIs.
+An interactive dashboard designed to analyze Amazon India sales and business performance through clear visualizations and KPIs.
 
 ## Business Objectives
 - Monitor overall sales and profitability.
@@ -33,5 +38,6 @@ and business performance through clear visualizations and KPIs.
 - HTML, CSS, and JavaScript
 
 ## How to View
-Download Amazon_India_Business_Dashboard.html
-and open it in Google Chrome or Microsoft Edge.
+Use the **[live dashboard link](https://yaksh2926.github.io/Amazon-India-Sales-Dashboard/)** above. It opens directly in Chrome, Edge, or another modern browser.
+
+The original HTML file and supporting project files are also available in this repository.
