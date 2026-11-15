@@ -1,31 +1,22 @@
 # Project Overview
 
-## Purpose
-Provide a management-friendly view of Amazon India sales and operations using an interactive dashboard and a documented analytical dataset.
+## Objective
+Analyze Amazon India sales and business operations using the supplied Excel transaction data and present the findings in an interactive management dashboard.
 
-## Dashboard sections
-The existing project description identifies four areas:
-1. Executive Overview
-2. Product Analysis
-3. Order Analysis
-4. Business Operations
+## Workbook
+The source workbook contains four sheets: `Sheet1` (10,000-row transaction table), `Category-wise sales`, `Top10 Products`, and `Sheet3` (order status summary). The analysis uses Sheet1 as the transaction-level source.
 
-## KPIs in the existing project brief
-- Total Sales
-- Total Profit
-- Total Orders
-- Total Units Sold
-- Average Order Value
-- Profit Margin
-- Return Rate
-- Cancellation Rate
+## KPIs
+- Total sales: ₹155,789,893.89
+- Total profit: ₹33,167,008.49
+- Orders: 10,000
+- Units sold: 24,926
+- Average order value: ₹15,578.99
+- Aggregate profit margin: 21.29%
+- Average discount: 8.56%
 
-## Business objectives
-- Monitor overall sales and profitability.
-- Identify high-performing product categories.
-- Understand delivered, shipped, returned, and cancelled orders.
-- Evaluate payment and fulfilment methods.
-- Compare performance across Indian states.
+## Main findings
+Electronics & Mobiles contributes about 79.3% of sales. Amazon (FBA) is the leading fulfilment channel by sales. UPI is the most common payment method. Maharashtra has the highest state sales. Delivered orders account for 81.47% of records.
 
-## Scope and provenance
-This repository retains the dashboard, cleaned CSV, DAX measures, and Pages workflow already present. The original raw workbook and a historical cleaning notebook were not in the repository root at the time this documentation was added. Accordingly, the current analysis starts from the committed cleaned CSV and does not claim to reproduce unseen preprocessing.
+## Scope
+The analysis is descriptive. It does not infer causality, customer-level behavior, or future sales. The workbook has no customer ID field.

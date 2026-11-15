@@ -1,12 +1,10 @@
 # Amazon India Sales & Business Performance Analysis
 
-An end-to-end portfolio repository for analyzing Amazon India sales and business performance. It includes the existing interactive dashboard, cleaned sales dataset, DAX measures, a Python analysis workflow, and project documentation.
+An end-to-end data analytics project built from the original Amazon India Excel workbook. It includes the transaction dataset, cleaned CSV, exploratory analysis notebook, reproducible Python profiling script, interactive dashboard, DAX measures, and a PDF report.
 
 ## Live dashboard
 
 **[Open the interactive Amazon India dashboard](https://yaksh2926.github.io/Amazon-India-Sales-Dashboard/)**
-
-The root `index.html` forwards to the standalone dashboard page. The dashboard is also preserved at `Dashboard/Amazon_India_Business_Dashboard.html`.
 
 ## Project structure
 
@@ -15,78 +13,84 @@ Amazon-India-Sales-Dashboard/
 ├── Dashboard/
 │   └── Amazon_India_Business_Dashboard.html
 ├── Data/
+│   ├── Amazon Sales Data India.xlsx
 │   └── Amazon_Sales_Cleaned.csv
+├── Analysis/
+│   ├── Amazon_India_Sales_Analysis.ipynb
+│   ├── analyze_sales.py
+│   └── requirements.txt
 ├── PowerBI/
 │   ├── Amazon_Dashboard_DAX_Measures.txt
 │   └── POWERBI_MODEL_GUIDE.md
-├── Analysis/
-│   ├── analyze_sales.py
-│   ├── requirements.txt
-│   └── outputs/                 # generated when the script runs
 ├── Documentation/
 │   ├── PROJECT_OVERVIEW.md
 │   └── DATA_DICTIONARY.md
-├── .github/workflows/pages.yml
-├── Amazon_India_Business_Dashboard.html   # original path retained
-├── Amazon_Sales_Cleaned.csv               # original path retained
-├── Amazon_Dashboard_DAX_Measures.txt      # original path retained
-├── index.html
+├── Reports/
+│   └── Amazon_India_Sales_Analysis_Report.pdf
 └── README.md
 ```
 
-The original root-level files are retained for compatibility; organized copies are provided in the folders above.
+The original root-level dashboard, CSV, DAX, and index files are retained for compatibility with existing links. The new organized folders contain the supporting project assets.
 
-## Business questions
+## Dataset overview
 
-The dashboard and DAX model are designed to explore:
-- Total sales, profit, order count, quantity, average order value, and profit margin.
-- Product/category performance.
-- Order status distribution: delivered, shipped, returned, and cancelled.
-- Fulfilment and payment-method performance.
-- State-wise performance.
-- Return and cancellation rates.
+The supplied workbook contains four sheets:
+- `Sheet1`: 10,000 transaction records and 13 columns; used as the main analysis table.
+- `Category-wise sales`: category summary.
+- `Top10 Products`: product sales summary.
+- `Sheet3`: order status counts.
 
-## Dataset
+The transaction table covers **1 January 2024 to 30 August 2026**. It contains 10,000 unique Order_ID values, no exact duplicate rows, and no missing values in the inspected 13 columns.
 
-The repository contains the cleaned CSV that was already part of the project: `Data/Amazon_Sales_Cleaned.csv`. It is duplicated from the original root-level file so existing links continue to work.
+## Key findings from the original workbook
 
-The existing DAX file assumes a table named **Amazon Sales** and uses fields including `Total_Sales_INR`, `Profit_INR`, `Order_ID`, `Quantity`, `Order_Status`, and `Order_Date`. Check the actual CSV header before relying on optional fields or extending the model.
+| KPI | Result |
+|---|---:|
+| Total orders / records | 10,000 |
+| Total sales | ₹155,789,893.89 |
+| Total profit | ₹33,167,008.49 |
+| Units sold | 24,926 |
+| Average order value | ₹15,578.99 |
+| Aggregate profit margin | 21.29% |
+| Average discount | 8.56% |
 
-**Scope note:** The repository snapshot did not contain the original raw workbook or the earlier cleaning notebook. This project therefore documents and analyzes the committed cleaned CSV; it does not claim to reproduce the original raw-to-clean transformation.
+- **Electronics & Mobiles** is the largest category, with approximately ₹123.57 million in sales (about 79.3% of total sales).
+- **Amazon (FBA)** is the largest fulfilment channel by sales.
+- **UPI** is the most frequently used payment method.
+- **Maharashtra** leads the state sales ranking.
+- Delivered orders account for 81.47% of the transaction records.
 
-## Run the Python analysis
+These are descriptive findings from the supplied file, not causal conclusions or forecasts.
 
-Python 3.10+ is recommended.
+## Reproduce the analysis
+
+Use Python 3.10 or newer:
 
 ```bash
 python -m pip install -r Analysis/requirements.txt
-python Analysis/analyze_sales.py --input Data/Amazon_Sales_Cleaned.csv --output Analysis/outputs
+python Analysis/analyze_sales.py --input "Data/Amazon Sales Data India.xlsx" --output Analysis/outputs
 ```
 
-The script creates a data profile, numeric summary, and supported business summaries. It checks for expected columns and skips unavailable breakdowns rather than guessing. Outputs are generated locally and are not committed automatically.
+Open `Analysis/Amazon_India_Sales_Analysis.ipynb` to see the full notebook workflow. The notebook reads the `Sheet1` transaction table, profiles data quality, prepares fields, calculates KPIs, and explores category, status, fulfilment, payment, state, product, and monthly performance.
 
 ## Power BI / DAX
 
-See:
-- [DAX measures](PowerBI/Amazon_Dashboard_DAX_Measures.txt)
-- [Model setup guide](PowerBI/POWERBI_MODEL_GUIDE.md)
-
-The measures cover sales, profit, orders, units, average order value, profit margin, order statuses, return/cancellation rates, and a calendar table.
+See `PowerBI/Amazon_Dashboard_DAX_Measures.txt` and `PowerBI/POWERBI_MODEL_GUIDE.md` for measures and model setup notes.
 
 ## Tools
 
 - Microsoft Excel
-- Python and Pandas
+- Python, Pandas, NumPy, Matplotlib
+- Jupyter Notebook
 - Power BI / DAX
-- HTML, CSS, and JavaScript
+- HTML, CSS, JavaScript
 - GitHub Pages
 
-## Interpretation notes
+## Data preparation and limitations
 
-- Monetary values are treated according to the source field names (INR); verify the source definitions before external reporting.
-- Order-status rates depend on the dataset's row grain and status definitions.
-- Descriptive comparisons do not establish causal explanations.
-- No Power BI `.pbix` file or raw source workbook is included in this repository snapshot.
+The cleaned CSV is produced from the original workbook by parsing `Order_Date`, trimming text fields, and coercing numeric columns to numeric types. No rows were removed or imputed because the inspected transaction sheet contained no missing values or exact duplicate rows.
+
+The dataset does not contain a customer identifier. Profit margin is calculated as total profit divided by total sales. Order status metrics use the transaction-level table; because Order_ID is unique in the supplied sheet, row counts and distinct order counts match in this file. Results describe the provided dataset and should be checked against business definitions before operational decisions.
 
 ## Author
 
