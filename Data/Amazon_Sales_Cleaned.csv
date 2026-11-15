@@ -1,4 +1,4 @@
-﻿Order_ID,Order_Date,Category,Product,Quantity,Unit_Price_INR,Discount_Pct,Total_Sales_INR,Profit_INR,Payment_Method,Fulfillment,Order_Status,Ship_State
+Order_ID,Order_Date,Category,Product,Quantity,Unit_Price_INR,Discount_Pct,Total_Sales_INR,Profit_INR,Payment_Method,Fulfillment,Order_Status,Ship_State
 IN-AMD-100000,2024-04-12,Apparel & Fashion,Saree with Unstitched Blouse,3,1129.14,0.25,2540.56,702.96,Cash on Delivery (COD),Seller Flex,Delivered,Telangana
 IN-AMD-100001,2025-03-11,Apparel & Fashion,Men Denim Jeans,3,1159.01,0.05,3303.18,770.96,UPI,Amazon (FBA),Shipped,Kerala
 IN-AMD-100002,2026-05-10,Beauty & Personal Care,Ubtan Face Wash,1,287.77,0.0,287.77,86.73,UPI,Amazon (FBA),Delivered,West Bengal
